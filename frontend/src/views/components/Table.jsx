@@ -8,15 +8,18 @@ import ButtonAction from './ButtonAction';
 
 
 
-const fetchData1 = () => {
-    console.log('fasfdsfsfsad')
-}
+
 
 
 
 const paginationModel = { page: 0, pageSize: 5 };
 
 export default function Table() {
+
+    const fetchData1 = () => {
+        console.log('reset Data 1')
+        return 'fsfsfdsfs'
+    }
 
     const columns = [
         {

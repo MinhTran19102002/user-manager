@@ -5,7 +5,11 @@ const AuthContext = createContext();
 
 // Provider để quản lý trạng thái đăng nhập
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(() => {
+        // Lấy user từ localStorage khi tải trang
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
 
     // Kiểm tra localStorage để duy trì trạng thái đăng nhập
     useEffect(() => {

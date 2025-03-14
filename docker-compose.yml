@@ -7,8 +7,9 @@ services:
     container_name: mysql-db
     restart: unless-stopped
     environment:
-      DB_PASSWORD: 1234   # ✅ Chỉ dùng cái này để thiết lập mật khẩu cho root
+      DB_PASSWORD: 1234  
       DB_DATABASE: user-manager
+      DB_HOST: mysql
     ports:
       - "3306:3306"
     networks:

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Children, useContext, useState } from 'react'
+import { Children, Suspense, useContext, useState } from 'react'
 import './App.css'
 import Login from './views/pages/Authen/Login';
 import { BrowserRouter, createBrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
@@ -11,6 +11,7 @@ import Main from './views/pages/Home';
 import Index from './views/pages/NotFound';
 import NotFound from './views/pages/NotFound';
 import Register from './views/pages/Authen/Register';
+import Profile from './views/pages/Home/Profile';
 
 const Authencation = ({ children }) => {
   const isAuthenticated = localStorage.getItem("token"); // Kiểm tra token đã lưu
@@ -42,6 +43,7 @@ function App() {
             <NotFound />
           }
         />
+        {/* <Route path="/*" element={<NotFound />} /> */}
       </Routes>
     </Box>
   )

@@ -30,7 +30,7 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
-const ButtonAction = (data, fetchData1) => {
+const ButtonAction = ({ data, fetchData1 }) => {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -53,8 +53,8 @@ const ButtonAction = (data, fetchData1) => {
             if (response.message === 'User updated successfully') { // Kiểm tra nếu cập nhật thành công
                 handleCloseModal(); // Đóng modal
                 // setData(response.user)
-                console.log(fetchData1)
-
+                // console.log(fetchData1)
+                fetchData1()
                 // fetchUsers(); // Gọi lại API để lấy danh sách user mới
             }
         } catch (error) {

@@ -14,6 +14,8 @@ import { useContext } from "react";
 import AuthContext from "../../../context";
 import React, { useEffect } from "react";
 // import  from "../AppProvider";
+import { useState } from "react";
+import { Alert } from "@mui/material";
 
 const Login = () => {
     const {
@@ -21,6 +23,8 @@ const Login = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(null);
     const { loginData } = useContext(AuthContext);
     const navigate = useNavigate();
     const onSubmit = async (data) => {
@@ -33,10 +37,14 @@ const Login = () => {
                 localStorage.setItem("token", response.access_token);
                 // const userData = response.user
                 loginData(response.user)
-                navigate("/home");
+                setSuccess(true);
+                setTimeout(() => {
+                    navigate("/home"); // Chuyển hướng sau 2s
+                }, 1000);
             }
         } catch (error) {
             console.error("Login failed:", error);
+            setError("Login failed. Please try again.");
         }
 
     };
@@ -69,9 +77,15 @@ const Login = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                flexDirection: "column"
             }}
         >
-            <Paper elevation={3} sx={{ padding: 4, marginTop: 8, borderRadius: "16px", width: "500px" }} square={false}>
+            {success && <Alert severity="success">Login successful!</Alert>}
+            {error && <Alert severity="error">{error}</Alert>}
+            <Paper elevation={3} sx={{
+                padding: 4, borderRadius: "16px", width: "500px", position: "fixed", top: "50%",
+                transform: "translate(-50%, -50%)", left: "50%"
+            }} square={false} >
                 <Typography variant="h5" textAlign="center" gutterBottom>
                     Đăng nhập
                 </Typography>
