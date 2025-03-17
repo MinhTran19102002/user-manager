@@ -2,7 +2,7 @@
 import { Children, Suspense, useContext, useState } from 'react'
 import './App.css'
 import Login from './views/pages/Authen/Login';
-import { BrowserRouter, createBrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, createBrowserRouter, Navigate, Route, Router, Routes } from 'react-router-dom';
 import Home from './views/pages/Home/Home';
 import User from './views/pages/Home/User';
 import ResponsiveAppBar from './views/layouts/Topbar';
@@ -26,26 +26,26 @@ const Authencation = ({ children }) => {
 
 function App() {
   return (
-    <Box>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/*"
-          element={
-            <Authencation>
-              {/* //   <Authorize> */}
-              <Main />
-              {/* //   </Authorize> */}
-            </Authencation>
-          }
-          errorElement={
-            <NotFound />
-          }
-        />
-        {/* <Route path="/*" element={<NotFound />} /> */}
-      </Routes>
-    </Box>
+    // <Router>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route
+        path="/*"
+        element={
+          <Authencation>
+            {/* //   <Authorize> */}
+            <Main />
+            {/* //   </Authorize> */}
+          </Authencation>
+        }
+        errorElement={
+          <NotFound />
+        }
+      />
+      {/* <Route path="/*" element={<NotFound />} /> */}
+    </Routes>
+    // </Router>
   )
 }
 
