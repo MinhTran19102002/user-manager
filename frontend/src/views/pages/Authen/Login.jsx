@@ -7,6 +7,8 @@ import {
     Typography,
     Box,
     Paper,
+    AlertTitle,
+    Stack,
 } from "@mui/material";
 import { checkToken, login } from "../../../api/Collections/Authcation";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +18,7 @@ import React, { useEffect } from "react";
 // import  from "../AppProvider";
 import { useState } from "react";
 import { Alert } from "@mui/material";
+// import CheckIcon from '@mui/icons-material/Check';
 
 const Login = () => {
     const {
@@ -26,9 +29,11 @@ const Login = () => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
     const { loginData } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
+            setLoading(true)
             console.log("Login Data:", data);
             const response = await login(data); // Gọi API login
             console.log("Login Response:", response);
@@ -40,11 +45,13 @@ const Login = () => {
                 setSuccess(true);
                 setTimeout(() => {
                     navigate("/home"); // Chuyển hướng sau 2s
-                }, 1000);
+                }, 4000);
             }
+            setLoading(false)
         } catch (error) {
             console.error("Login failed:", error);
             setError("Login failed. Please try again.");
+            setLoading(false)
         }
 
     };
@@ -80,7 +87,7 @@ const Login = () => {
                 flexDirection: "column"
             }}
         >
-            {success && <Alert severity="success">Login successful!</Alert>}
+            {/* {success && <Alert severity="success">Login successful!</Alert>} */}
             {error && <Alert severity="error">{error}</Alert>}
             <Paper elevation={3} sx={{
                 padding: 4, borderRadius: "16px", width: "500px", position: "fixed", top: "50%",
@@ -111,7 +118,7 @@ const Login = () => {
                         error={!!errors.password}
                         helperText={errors.password?.message}
                     />
-                    <Button type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
+                    <Button loading={loading} type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
                         Đăng nhập
                     </Button>
 

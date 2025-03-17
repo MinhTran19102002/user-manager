@@ -26,9 +26,11 @@ const Register = () => {
     } = useForm();
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
+            setLoading(true)
             console.log("Login Data:", data);
             const response = await registerUser(data); // Gọi API login
             console.log("Login Response:", response);
@@ -37,9 +39,11 @@ const Register = () => {
             setTimeout(() => {
                 navigate("/login"); // Chuyển hướng sau 2s
             }, 1000);
+            setLoading(false)
         } catch (error) {
             console.error("Login failed:", error);
             setError("Register failed. Please try again.");
+            setLoading(false)
         }
 
     };
@@ -117,7 +121,7 @@ const Register = () => {
                         error={!!errors.email}
                         helperText={errors.email?.message}
                     />
-                    <Button type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
+                    <Button loading={loading} type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
                         Đăng ký
                     </Button>
                 </Box>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
     Container,
     TextField,
@@ -34,6 +34,7 @@ export default function ModalEdit(data, isOpen) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const { setData } = useContext(AuthContext)
+    const [loading, setLoading] = useState(false);
     const {
         register,
         handleSubmit,
@@ -53,6 +54,7 @@ export default function ModalEdit(data, isOpen) {
     const onSubmit = async (data) => {
         // console.log('rffasfsafdaf')
         try {
+            setLoading(true)
             console.log("Login Data:", data);
             const response = await updateUser(data); // Gọi API login
             if (response.message === 'User updated successfully') { // Kiểm tra nếu cập nhật thành công
@@ -60,8 +62,10 @@ export default function ModalEdit(data, isOpen) {
                 setData(response.user)
                 // fetchUsers(); // Gọi lại API để lấy danh sách user mới
             }
+            setLoading(false)
         } catch (error) {
             console.error("Login failed:", error);
+            setLoading(false)
         }
     }
     return (
@@ -124,6 +128,7 @@ export default function ModalEdit(data, isOpen) {
                             <FormControlLabel value="female" control={<Radio />} label="Nữ" />
                         </RadioGroup>
                         <Button
+                            loading={loading}
                             type='submit'
                             sx={{ mt: 2 }}
                             variant="contained"
