@@ -11,6 +11,7 @@ import {
     RadioGroup,
     FormControlLabel,
     Radio,
+    Stack,
 } from "@mui/material";
 import { login, registerUser } from "../../../api/Collections/Authcation";
 import { useNavigate } from "react-router-dom";
@@ -60,8 +61,16 @@ const Register = () => {
                 flexDirection: "column"
             }}
         >
-            {success && <Alert severity="success">Register successful!</Alert>}
-            {error && <Alert severity="error">{error}</Alert>}
+            <Stack sx={{
+                width: '30%',
+                position: 'absolute',
+                top: 0,
+                left: '50%',
+                transform: 'translateX(-50%)'
+            }} spacing={2}>
+                {success && <Alert severity="success">Register successful!</Alert>}
+                {error && <Alert severity="error">{error}</Alert>}
+            </Stack>
             <Paper elevation={3} sx={{
                 padding: 4, borderRadius: "16px", width: "500px", position: "fixed", top: "50%",
                 transform: "translate(-50%, -50%)", left: "50%"
