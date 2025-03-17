@@ -143,11 +143,14 @@ const ButtonAction = (pros) => {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                // defaultValue={'male'}
+                                defaultValue={'male'}
+                                disabled
                                 {...register("gender", { required: "Vui lòng chọn giới tính!" })}
                             >
                                 <FormControlLabel value="male" control={<Radio />} label="Nam" />
                                 <FormControlLabel value="female" control={<Radio />} label="Nữ" />
+
+
 
 
                             </RadioGroup>

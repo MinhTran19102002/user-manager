@@ -21,8 +21,10 @@ export const AuthProvider = ({ children }) => {
 
     // Hàm đăng nhập (Lưu user vào state và localStorage)
     const setData = (userData) => {
-        setUser(userData);
-        localStorage.setItem("user", JSON.stringify(userData)); // Lưu vào localStorage
+        const role = user.role
+        const updatedUser = { ...userData, role: role };
+        setUser(updatedUser);
+        localStorage.setItem("user", JSON.stringify(updatedUser)); // Lưu vào localStorage
     };
     const loginData = (userData) => {
         setUser(userData);

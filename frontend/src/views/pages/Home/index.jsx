@@ -13,7 +13,7 @@ function Main() {
     const { user } = useContext(AuthContext);
 
     const currRoute = () => {
-        console.log('------')
+        console.log('------1321')
         console.log(user)
         let route = []
         switch (user.role) {
@@ -25,8 +25,9 @@ function Main() {
                 break
 
             case 'user':
-                console.log('------1')
-                route = [{ path: '/user', element: <User /> },
+                console.log('------2')
+
+                route = [{ path: '/home', element: <User /> },
                 ]
                 break
         }
@@ -35,7 +36,7 @@ function Main() {
     }
     return (
         <Box>
-            <ResponsiveAppBar />
+            <ResponsiveAppBar role={user.role} />
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                     {/* <Route path="/user" element={<User />} />

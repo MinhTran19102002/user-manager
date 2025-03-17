@@ -21,14 +21,16 @@ import BasicModal from '../components/ModalProfile';
 import AuthContext from '../../context';
 
 
-const pages = [{ name: 'Home', path: '/home' },
+const pagesAdmin = [{ name: 'Home', path: '/home' },
 { name: 'User', path: '/user' }];
+const pagesUser = [
+    { name: 'Trang Home của User', path: '/home' }];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar(role) {
 
     const navigate = useNavigate();
     const { user, logoutData } = useContext(AuthContext)
-
+    const pages = role === "admin" ? pagesAdmin : pagesUser;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -100,6 +102,8 @@ function ResponsiveAppBar() {
                     >
                         LOGO
                     </Typography>
+
+
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button

@@ -115,6 +115,7 @@ export default function BasicModal(data) {
                             name="row-radio-buttons-group"
                             defaultValue={data.dataUser.gender}
                             {...register("gender", { required: "Vui lòng chọn giới tính!" })}
+                            disabled
                         >
                             <FormControlLabel value="male" control={<Radio />} label="Nam" />
                             <FormControlLabel value="female" control={<Radio />} label="Nữ" />
