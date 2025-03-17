@@ -16,11 +16,6 @@ const paginationModel = { page: 0, pageSize: 5 };
 
 export default function Table() {
 
-    const fetchData1 = () => {
-        console.log('reset Data 1')
-        return 'fsfsfdsfs'
-    }
-
     const columns = [
         {
             field: 'id', headerName: 'ID', width: 70,
@@ -35,7 +30,7 @@ export default function Table() {
             headerName: 'Hành động',
             width: 150,
             renderCell: (params) => (
-                <ButtonAction data={params.row} fetchData={fetchData1} />
+                <ButtonAction data={params.row} fetchData={fetchData} />
             ),
         },
     ];
@@ -45,7 +40,7 @@ export default function Table() {
 
     const fetchData = async () => {
         try {
-            console.log('fasfsafssssd')
+            console.log('Da vao duoc day')
             const response = await getAllUser() // Gọi API
             const data = response.data.map((user) => ({
                 id: user.id,

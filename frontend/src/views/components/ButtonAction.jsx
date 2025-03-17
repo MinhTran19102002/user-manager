@@ -30,8 +30,8 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
-const ButtonAction = ({ data, fetchData1 }) => {
-
+const ButtonAction = (pros) => {
+    const { data, fetchData } = pros
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -52,9 +52,11 @@ const ButtonAction = ({ data, fetchData1 }) => {
             const response = await updateUserByAdmin(formData); // Gọi API login
             if (response.message === 'User updated successfully') { // Kiểm tra nếu cập nhật thành công
                 handleCloseModal(); // Đóng modal
+                fetchData()
+                // console.log(fetchData())
                 // setData(response.user)
                 // console.log(fetchData1)
-                fetchData1()
+                // pros
                 // fetchUsers(); // Gọi lại API để lấy danh sách user mới
             }
         } catch (error) {
@@ -77,10 +79,10 @@ const ButtonAction = ({ data, fetchData1 }) => {
     const handleEdit = (rowData) => {
         console.log("Dữ liệu cần sửa:", rowData);
         handleOpen();
-        setValue("email", rowData.data.email);
-        setValue("name", rowData.data.name);
-        setValue("address", rowData.data.address);
-        // setValue("gender", rowData.data.gender);
+        setValue("email", rowData.email);
+        setValue("name", rowData.name);
+        setValue("address", rowData.address);
+        // setValue("gender", rowData.gender);
         // setValue("gender", "male");
     };
 
@@ -141,11 +143,13 @@ const ButtonAction = ({ data, fetchData1 }) => {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={'male'}
+                                // defaultValue={'male'}
                                 {...register("gender", { required: "Vui lòng chọn giới tính!" })}
                             >
                                 <FormControlLabel value="male" control={<Radio />} label="Nam" />
                                 <FormControlLabel value="female" control={<Radio />} label="Nữ" />
+
+
                             </RadioGroup>
                             <Button
                                 type='submit'
