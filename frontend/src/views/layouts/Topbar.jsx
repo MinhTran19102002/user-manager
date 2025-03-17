@@ -19,6 +19,7 @@ import Logout from '@mui/icons-material/Logout';
 import { logout } from '../../api/Collections/Authcation';
 import BasicModal from '../components/ModalProfile';
 import AuthContext from '../../context';
+import FaceIcon from '@mui/icons-material/Face';
 
 
 const pagesAdmin = [{ name: 'Home', path: '/home' },
@@ -59,15 +60,15 @@ function ResponsiveAppBar(role) {
 
 
     return (
-        <AppBar position="static" sx={{ width: "100vw" }}>
+        <AppBar position="static" sx={{ width: "100vw" }} color="primary">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <FaceIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        href="#"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -78,7 +79,7 @@ function ResponsiveAppBar(role) {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO1
+                        USER-MANAGER
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -88,7 +89,7 @@ function ResponsiveAppBar(role) {
                         variant="h5"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        href="#"
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
@@ -100,7 +101,7 @@ function ResponsiveAppBar(role) {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        USER-MANAGER
                     </Typography>
 
 
