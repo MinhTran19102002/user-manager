@@ -24,7 +24,7 @@ import AuthContext from '../../context';
 const pagesAdmin = [{ name: 'Home', path: '/home' },
 { name: 'User', path: '/user' }];
 const pagesUser = [
-    { name: 'Trang Home của User', path: '/home' }];
+    { name: 'Trang Home của User 1', path: '/home' }];
 
 function ResponsiveAppBar(role) {
 
